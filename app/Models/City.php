@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\CarStore;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class City extends Model
@@ -14,4 +16,8 @@ class City extends Model
         'name',
         'slug'
     ];
+
+    public function carStores(): HasMany {
+        return $this->hasMany(CarStore::class);
+    }
 }
