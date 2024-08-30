@@ -16,7 +16,8 @@ class StorePhoto extends Model
         'car_store_id'
     ];
 
-    public function carStore() : BelongsTo {
-        return $this->belongsTo(CarStore::class);
+    public function carStore(): BelongsTo
+    {
+        return $this->belongsTo(CarStore::class, 'car_store_id');
     }
 }

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class BookingTransaction extends Model
@@ -24,12 +24,13 @@ class BookingTransaction extends Model
         'time_at'
     ];
 
-    public function carStore() : HasOne {
-        return $this->HasOne(CarStore::class);
+    public function service_details(): BelongsTo
+    {
+        return $this->belongsTo(CarService::class, 'car_service_id');
     }
 
-    public function carService(): HasOne
+    public function store_details(): BelongsTo
     {
-        return $this->HasOne(CarService::class);
+        return $this->belongsTo(CarStore::class, 'car_store_id');
     }
 }

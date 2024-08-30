@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 
 class CarStore extends Model
 {
@@ -24,15 +25,24 @@ class CarStore extends Model
         'cs_name',
     ];
 
-    public function carServices(): HasMany {
-        return $this->hasMany(CarService::class);
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = $value;
+        $this->attributes['slug'] = Str::slug($value);
     }
 
-    public function city(): BelongsTo {
-        return $this->belongsTo(City::class);
+    public function carServices(): HasMany
+    {
+        return $this->hasMany(CarService::class, 'car_store_id');
     }
 
-    public function photos(): HasMany {
-        return $this->hasMany(StorePhoto::class);
+    public function city(): BelongsTo
+    {
+        return $this->belongsTo(City::class, 'city_id');
+    }
+
+    public function photos(): HasMany
+    {
+        return $this->hasMany(StorePhoto::class, 'car_store_id');
     }
 }

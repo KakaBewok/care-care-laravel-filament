@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 
 class CarService extends Model
 {
@@ -13,7 +14,13 @@ class CarService extends Model
 
     protected $fillable = ['name', 'price', 'about', 'photo', 'duration_in_hour', 'slug'];
 
-    public function carStore(): HasMany
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = $value;
+        $this->attributes['slug'] = Str::slug($value);
+    }
+
+    public function carStores(): HasMany
     {
         return $this->hasMany(CarStore::class);
     }
