@@ -10,15 +10,17 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Storage;
 
 class CarServiceResource extends Resource
 {
     protected static ?string $model = CarService::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-wrench-screwdriver';
 
     public static function form(Form $form): Form
     {
@@ -30,7 +32,7 @@ class CarServiceResource extends Resource
                 Forms\Components\FileUpload::make('photo')
                     ->directory('photos')
                     ->image()
-                    ->maxSize(1024) 
+                    ->maxSize(1024)
                     ->acceptedFileTypes(['image/jpeg', 'image/png']),
                 Forms\Components\TextInput::make('duration_in_hour')->required(),
             ]);
@@ -42,10 +44,12 @@ class CarServiceResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')->searchable(),
-                Tables\Columns\TextColumn::make('price')->searchable(),
-                Tables\Columns\TextColumn::make('about')->searchable(),
-                Tables\Columns\TextColumn::make('duration_in_hour')->searchable(),
-                Tables\Columns\TextColumn::make('slug')->searchable(),
+                Tables\Columns\TextColumn::make('price'),
+                Tables\Columns\TextColumn::make('about'),
+                Tables\Columns\TextColumn::make('duration_in_hour'),
+                Tables\Columns\TextColumn::make('slug'),
+                ImageColumn::make('photo')
+                    ->url(fn($record) =>  Storage::url($record->photo))
             ])
             ->filters([
                 //
