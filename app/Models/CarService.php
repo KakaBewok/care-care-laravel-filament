@@ -12,7 +12,7 @@ class CarService extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['name', 'price', 'about', 'photo', 'duration_in_hour', 'slug'];
+    protected $fillable = ['name', 'price', 'about', 'photo', 'duration_in_hour', 'slug', 'icon'];
 
     public function setNameAttribute($value)
     {

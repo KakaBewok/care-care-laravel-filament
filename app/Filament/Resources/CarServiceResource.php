@@ -26,15 +26,34 @@ class CarServiceResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')->required(),
-                Forms\Components\TextInput::make('price')->required(),
-                Forms\Components\TextInput::make('about')->required(),
+                Forms\Components\TextInput::make('name')
+                    ->helperText('Service name e.g. Car Wash')
+                    ->maxLength(255)
+                    ->required(),       
+                Forms\Components\TextInput::make('price')->required()
+                    ->numeric()
+                    ->prefix('IDR')
+                    ->required(),
+                Forms\Components\TextInput::make('duration_in_hour')->required()
+                    ->numeric()
+                    ->maxLength(255)
+                    ->required(),
                 Forms\Components\FileUpload::make('photo')
                     ->directory('photos')
                     ->image()
+                    ->maxSize(4024) 
+                    ->acceptedFileTypes(['image/jpeg', 'image/png'])
+                    ->required(),
+                Forms\Components\FileUpload::make('icon')
+                    ->directory('icons')
+                    ->image()
                     ->maxSize(1024)
-                    ->acceptedFileTypes(['image/jpeg', 'image/png']),
-                Forms\Components\TextInput::make('duration_in_hour')->required(),
+                    ->acceptedFileTypes(['image/jpeg', 'image/png'])
+                    ->required(),
+                Forms\Components\TextArea::make('about')
+                    ->rows(10)
+                    ->cols(20)
+                    ->required(),
             ]);
     }
     // 'name', 'price', 'about', 'photo', 'duration_in_hour', 'slug'
@@ -45,11 +64,8 @@ class CarServiceResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')->searchable(),
                 Tables\Columns\TextColumn::make('price'),
-                Tables\Columns\TextColumn::make('about'),
                 Tables\Columns\TextColumn::make('duration_in_hour'),
-                Tables\Columns\TextColumn::make('slug'),
-                ImageColumn::make('photo')
-                    ->url(fn($record) =>  Storage::url($record->photo))
+                Tables\Columns\ImageColumn::make('icon'),
             ])
             ->filters([
                 //
