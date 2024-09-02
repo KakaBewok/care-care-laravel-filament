@@ -56,7 +56,6 @@ class CarServiceResource extends Resource
                     ->required(),
             ]);
     }
-    // 'name', 'price', 'about', 'photo', 'duration_in_hour', 'slug'
 
     public static function table(Table $table): Table
     {
