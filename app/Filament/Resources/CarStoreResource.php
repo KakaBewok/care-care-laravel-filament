@@ -6,6 +6,11 @@ use App\Filament\Resources\CarStoreResource\Pages;
 use App\Filament\Resources\CarStoreResource\RelationManagers;
 use App\Models\CarStore;
 use Filament\Forms;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -27,29 +32,39 @@ class CarStoreResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
+                TextInput::make('name')
                     ->helperText('Store name e.g. Rizal Store')
                     ->maxLength(255)
                     ->required(),
-                Forms\Components\FileUpload::make('thumbnail')
+                FileUpload::make('thumbnail')
                     ->directory('photos')
                     ->image()
                     ->maxSize(4024)
                     ->acceptedFileTypes(['image/jpeg', 'image/png'])
                     ->required(),
-                Forms\Components\Toggle::make('is_open')
+                Toggle::make('is_open')
                     ->label('Is Open')
                     ->required(),
-                Forms\Components\Toggle::make('is_full')
-                    ->label('Is Full')
+                Toggle::make('is_full')
+                    ->label('Is Full Book')
                     ->required(),
-                Forms\Components\Select::make('city_id')
+
+            Repeater::make('carServices') // Menggunakan 'storeServices' sebagai nama field untuk StoreService relationship
+            ->relationship() // Menghubungkan ke relasi StoreService pada model CarStore
+            ->schema([
+                Select::make('car_service_id')
+                ->relationship('service', 'name') // Menghubungkan ke relasi CarService pada model StoreService
+                ->required(),
+            ])
+            ->collapsible(),
+
+                Select::make('city_id')
                     ->relationship('city', 'name')
                     ->searchable()
                     ->preload()
                     ->required()
                     ->createOptionForm([
-                            Forms\Components\TextInput::make('name')
+                            TextInput::make('name')
                             ->required()
                             ->maxLength(255)
                     ]),
@@ -57,19 +72,17 @@ class CarStoreResource extends Resource
                     ->rows(10)
                     ->cols(20)
                     ->required(),
-                Forms\Components\TextInput::make('phone_number')
+                TextInput::make('phone_number')
                     ->label('Phone Number')
                     ->numeric()
                     ->tel()
                     ->required(),
-                Forms\Components\TextInput::make('cs_name')
+                TextInput::make('cs_name')
                     ->label('Customer Name')
                     ->maxLength(255)
                     ->required(),
             ]);
     }
-
-    //     'address', -
 
     public static function table(Table $table): Table
     {
@@ -77,9 +90,13 @@ class CarStoreResource extends Resource
             ->columns([
                 TextColumn::make('name')->searchable(),
                 IconColumn::make('is_open')
-                ->boolean(),
+                    ->boolean()
+                    ->trueColor('info')
+                    ->falseColor('warning'),
                 IconColumn::make('is_full')
-                ->boolean(),
+                    ->boolean()
+                    ->trueColor('info')
+                    ->falseColor('warning'),
                 TextColumn::make('phone_number'),
                 TextColumn::make('cs_name')->label('Customer Name'),
                 ImageColumn::make('thumbnail')->square(),
@@ -87,9 +104,13 @@ class CarStoreResource extends Resource
             ])
             ->filters([
                 Filter::make('is_open')
-                    ->label('Is Open')
+                    ->label('Store Open')
                     ->toggle()
-                    ->query(fn (Builder $query) : Builder => $query->where('is_open', true))
+                    ->query(fn (Builder $query) : Builder => $query->where('is_open', true)),
+                Filter::make('is_full')
+                    ->label('Full Book')
+                    ->toggle()
+                    ->query(fn(Builder $query): Builder => $query->where('is_full', true)),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
