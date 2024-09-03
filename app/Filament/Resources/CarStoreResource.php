@@ -49,14 +49,13 @@ class CarStoreResource extends Resource
                     ->label('Is Full Book')
                     ->required(),
 
-            Repeater::make('carServices') // Menggunakan 'storeServices' sebagai nama field untuk StoreService relationship
-            ->relationship() // Menghubungkan ke relasi StoreService pada model CarStore
-            ->schema([
-                Select::make('car_service_id')
-                ->relationship('service', 'name') // Menghubungkan ke relasi CarService pada model StoreService
-                ->required(),
-            ])
-            ->collapsible(),
+                Repeater::make('storeServices')
+                    ->relationship()
+                    ->schema([
+                        Select::make('car_service_id')
+                            ->relationship('service', 'name')
+                            ->required(),
+                    ]),
 
                 Select::make('city_id')
                     ->relationship('city', 'name')
@@ -64,7 +63,7 @@ class CarStoreResource extends Resource
                     ->preload()
                     ->required()
                     ->createOptionForm([
-                            TextInput::make('name')
+                        TextInput::make('name')
                             ->required()
                             ->maxLength(255)
                     ]),
@@ -106,7 +105,7 @@ class CarStoreResource extends Resource
                 Filter::make('is_open')
                     ->label('Store Open')
                     ->toggle()
-                    ->query(fn (Builder $query) : Builder => $query->where('is_open', true)),
+                    ->query(fn(Builder $query): Builder => $query->where('is_open', true)),
                 Filter::make('is_full')
                     ->label('Full Book')
                     ->toggle()

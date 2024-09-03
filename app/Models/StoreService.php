@@ -12,8 +12,6 @@ class StoreService extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'StoreServices';
-
     protected $fillable = [
         'car_service_id',
         'car_store_id'
