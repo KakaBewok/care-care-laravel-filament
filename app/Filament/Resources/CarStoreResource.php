@@ -89,6 +89,7 @@ class CarStoreResource extends Resource
                 Filter::make('is_open')
                     ->label('Is Open')
                     ->toggle()
+                    ->query(fn (Builder $query) : Builder => $query->where('is_open', true))
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
