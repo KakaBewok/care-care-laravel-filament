@@ -9,6 +9,10 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -65,27 +69,30 @@ class CarStoreResource extends Resource
             ]);
     }
 
-    //     'name',-
-    //     'slug',-
-    //     'thumbnail', -
-    //     'is_open', -
-    //     'is_full', -
-    //     'city_id', - 
     //     'address', -
-    //     'phone_number', -
-    //     'cs_name', -
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('name')->searchable(),
+                IconColumn::make('is_open')
+                ->boolean(),
+                IconColumn::make('is_full')
+                ->boolean(),
+                TextColumn::make('phone_number'),
+                TextColumn::make('cs_name')->label('Customer Name'),
+                ImageColumn::make('thumbnail')->square(),
+                TextColumn::make('city.name')->label('City Name'),
             ])
             ->filters([
-                //
+                Filter::make('is_open')
+                    ->label('Is Open')
+                    ->toggle()
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
