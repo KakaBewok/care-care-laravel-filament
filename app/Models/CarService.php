@@ -20,8 +20,8 @@ class CarService extends Model
         $this->attributes['slug'] = Str::slug($value);
     }
 
-    public function carStores(): HasMany
+    public function storeServices(): HasMany
     {
-        return $this->hasMany(CarStore::class);
+        return $this->hasMany(StoreService::class);
     }
 }
