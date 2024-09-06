@@ -3,6 +3,9 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\BookingTransactionResource\Pages;
+use App\Filament\Resources\BookingTransactionResource\Pages\CreateBookingTransaction;
+use App\Filament\Resources\BookingTransactionResource\Pages\EditBookingTransaction;
+use App\Filament\Resources\BookingTransactionResource\Pages\ListBookingTransactions;
 use App\Filament\Resources\BookingTransactionResource\RelationManagers;
 use App\Models\BookingTransaction;
 use Filament\Forms;
@@ -15,6 +18,12 @@ use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\BulkActionGroup;
+use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -72,28 +81,28 @@ class BookingTransactionResource extends Resource
             ]);
     }
 
-    // 'name', ---
-    // 'trx_id', ---
-    // 'proof', ---
-    // 'phone_number', ---
-    // 'is_paid', ===
-    // 'total_amount', ---
-    // 'car_store_id',
-    // 'car_service_id',
-    // 'started_at', ---
-    // 'time_at' ----
-
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('name')->searchable(),
+                TextColumn::make('trx_id')->searchable(),
+                IconColumn::make('is_paid')
+                    ->boolean()
+                    ->trueColor('info')
+                    ->falseColor('warning'),
+                TextColumn::make('total_amount'),
+                TextColumn::make('service_details.name')->label('Service'),
+                TextColumn::make('store_details.name')->label('Store'),
+                ImageColumn::make('proof')->square(),
+                TextColumn::make('started_at'),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
