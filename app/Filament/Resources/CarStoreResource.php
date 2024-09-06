@@ -79,7 +79,7 @@ class CarStoreResource extends Resource
                     ->tel()
                     ->required(),
                 TextInput::make('cs_name')
-                    ->label('Customer Name')
+                    ->label('Customer Service Name')
                     ->maxLength(255)
                     ->required(),
             ]);
@@ -99,9 +99,9 @@ class CarStoreResource extends Resource
                     ->trueColor('info')
                     ->falseColor('warning'),
                 TextColumn::make('phone_number'),
-                TextColumn::make('cs_name')->label('Customer Name'),
+                TextColumn::make('cs_name')->label('Customer Service Name'),
                 ImageColumn::make('thumbnail')->square(),
-                TextColumn::make('city.name')->label('City Name'),
+                TextColumn::make('city.name')->label('City'),
             ])
             ->filters([
                 Filter::make('is_open')
