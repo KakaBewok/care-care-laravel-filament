@@ -82,6 +82,16 @@ class CarStoreResource extends Resource
                     ->label('Customer Service Name')
                     ->maxLength(255)
                     ->required(),
+
+                Repeater::make('photos')
+                    ->relationship()
+                    ->schema([
+                        FileUpload::make('photo')
+                            ->directory('photos')
+                            ->image()
+                            ->maxSize(4024)
+                            ->acceptedFileTypes(['image/jpeg', 'image/png'])
+                    ]),
             ]);
     }
 
@@ -141,7 +151,7 @@ class CarStoreResource extends Resource
     public static function getRelations(): array
     {
         return [
-            PhotosRelationManager::class,
+            // PhotosRelationManager::class, //comment sementara
         ];
     }
 
