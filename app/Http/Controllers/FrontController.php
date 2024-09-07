@@ -23,6 +23,9 @@ class FrontController extends Controller
         $cityId = $request->query('city_id');
         $serviceTypeId = $request->query('service_type');
 
+
+        //QUERY TO DATABASE:
+
         //get service
         $carService = CarService::where('id', $serviceTypeId)->first();
         if (!$carService) {
@@ -30,7 +33,7 @@ class FrontController extends Controller
         }
 
         //get store with service and city
-        $stores = CarStore::whereHas('storeService', function (Builder $query) use ($carService) {
+        $stores = CarStore::whereHas('storeServices', function (Builder $query) use ($carService) {
             $query->where('car_service_id', $carService->id);
         })->where('city_id', $cityId)->get();
 

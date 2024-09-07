@@ -2,3 +2,10 @@ body {
     font-family: "Poppins";
     color: #270738;
 }
+
+//custom
+.darken {
+    background-color: #2d3748; /* Dark gray */
+    color: white;
+    opacity: 0.75;
+}
