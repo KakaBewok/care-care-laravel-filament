@@ -112,7 +112,7 @@
             link.addEventListener('click', function(e) {
                 e.preventDefault();
                 const cityId = document.getElementById('city_id').value;
-                const serviceTypeId = this.getAttribute('data-service').value
+                const serviceTypeId = this.getAttribute('data-service')
 
                 //redirect to a route with query parameters
                 window.location.href = `/search?city_id=${cityId}&service_type=${serviceTypeId}`
