@@ -23,7 +23,6 @@ class FrontController extends Controller
         $cityId = $request->query('city_id');
         $serviceTypeId = $request->query('service_type');
 
-
         //QUERY TO DATABASE:
 
         //get service
@@ -47,5 +46,10 @@ class FrontController extends Controller
             'carService' => $carService,
             'cityName' => $city ? $city->name : 'Unknown city'
         ]);
+    }
+
+    public function details(CarStore $carStore)
+    {
+        return view('front.details', compact('carStore'));
     }
 }
