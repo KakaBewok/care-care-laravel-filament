@@ -30,9 +30,9 @@
         </div>
         <section id="Store-list" class="flex flex-col gap-6 px-4 mt-[30px]">
             @forelse ($stores as $store)
-                <a href="details.html" class="card {{ $store->is_full ? 'darken' : '' }}">
+                <a href="details.html" class="card">
                     <div
-                        class="flex flex-col gap-4 rounded-[20px] ring-1 ring-[#E9E8ED] pb-4 bg-white overflow-hidden transition-all duration-300 hover:ring-2 hover:ring-[#FF8E62]">
+                        class="{{ $store->is_full ? 'bg-gray-200 opacity-50' : 'bg-white' }} flex flex-col gap-4 rounded-[20px] ring-1 ring-[#E9E8ED] pb-4 overflow-hidden transition-all duration-300 hover:ring-2 hover:ring-[#FF8E62]">
                         <div class="w-full h-[120px] flex shrink-0 overflow-hidden relative">
                             <img src="{{ Storage::url($store->thumbnail) }}" class="w-full h-full object-cover"
                                 alt="thumbnail">
