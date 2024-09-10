@@ -50,6 +50,8 @@ class FrontController extends Controller
 
     public function details(CarStore $carStore)
     {
-        return view('front.details', compact('carStore'));
+        $serviceTypeId = session()->get('serviceTypeId');
+        $carService = CarService::where('id', $serviceTypeId)->first();
+        return view('front.details', compact('carStore', 'carService'));
     }
 }
