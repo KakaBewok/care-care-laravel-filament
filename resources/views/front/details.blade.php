@@ -276,11 +276,11 @@
                                             <img src="{{ asset('assets/images/icons/contact.svg') }}" alt="icon">
                                         </div>
                                         <div class="flex flex-col h-fit">
-                                            <p class="font-semibold">Jason Mirna</p>
-                                            <p class="text-sm leading-[21px] text-[#909DBF]">Manager</p>
+                                            <p class="font-semibold">{{ $carStore->cs_name }}</p>
+                                            <p class="text-sm leading-[21px] text-[#909DBF]">Customer Service</p>
                                         </div>
                                     </div>
-                                    <a href="#"
+                                    <a href="tel:{{ $carStore->phone_number }}"
                                         class="appearance-none font-semibold text-sm leading-[21px] hover:underline text-[#FF8E62]">Call
                                         Now</a>
                                 </div>
@@ -294,8 +294,9 @@
         <div id="CTA-nav"
             class="fixed bottom-0 w-full max-w-[640px] mx-auto border-t border-[#E9E8ED] flex items-center justify-between p-[16px_24px] bg-white z-20">
             <div class="flex flex-col gap-[2px]">
-                <p class="font-bold text-xl leading-[30px]">Rp 12.560.000</p>
-                <p class="text-sm leading-[21px] text-[#909DBF]">3 Hours</p>
+                <p class="font-bold text-xl leading-[30px]">Rp {{ number_format($carService->price, 0, ',', '.') }}
+                </p>
+                <p class="text-sm leading-[21px] text-[#909DBF]">{{ $carService->duration_in_hour }} Hours</p>
             </div>
             <a href="booking.html" class="rounded-full p-[12px_20px] bg-[#FF8E62] font-bold text-white">Booking
                 Now</a>
@@ -308,7 +309,7 @@
                 <div
                     class="bg-white max-w-[320px] mx-auto flex flex-col h-fit rounded-[20px] pb-4 gap-4 overflow-hidden">
                     <div class="w-full h-[150px] flex shrink-0">
-                        <img src="{{ Storage::url($carService->icon) }}" class="w-full h-full object-cover"
+                        <img src="{{ Storage::url($carService->photo) }}" class="w-full h-full object-cover"
                             alt="thumbnail">
                     </div>
                     <div class="flex flex-col px-4 gap-4">
