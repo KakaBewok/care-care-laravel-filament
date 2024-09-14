@@ -13,12 +13,12 @@ Route::get('/search', [FrontController::class, 'search'])->name('front.search');
 
 Route::get('/store/details/{carStore:slug}', [FrontController::class, 'details'])->name('front.details'); //details of store you are looking for
 
-Route::get('/booking/{CarStore:slug}', [FrontController::class, 'booking'])->name('front.booking');
+Route::get('/booking/{carStore:slug}', [FrontController::class, 'booking'])->name('front.booking');
 
-Route::post('/booking/{CarStore:slug}/{CarService:slug}', [FrontController::class, 'booking_store'])->name('front.booking.store');
+Route::post('/booking/{carStore:slug}/{service:slug}', [FrontController::class, 'booking_store'])->name('front.booking.store');
 
-Route::get('/booking/{CarStore}/{CarService}/payment', [FrontController::class, 'booking_payment'])->name('front.booking.payment');
+Route::get('/booking/{carStore}/{carService}/payment', [FrontController::class, 'booking_payment'])->name('front.booking.payment');
 
 Route::post('/booking/payment/submit', [FrontController::class, 'booking_payment_store'])->name('front.booking.payment.store');
 
-Route::get('/booking/success/{BookingTransaction}', [FrontController::class, 'success_booking'])->name('front.success.booking');
+Route::get('/booking/success/{bookingTransaction}', [FrontController::class, 'success_booking'])->name('front.success.booking');

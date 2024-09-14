@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CarService;
 use App\Models\CarStore;
 use App\Models\City;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use session;
@@ -61,7 +62,13 @@ class FrontController extends Controller
 
         $serviceTypeId = session()->get('serviceTypeId');
         $service = CarService::where('id', $serviceTypeId)->first();
+        $tomorrow = Carbon::tomorrow();
 
-        return view('front.booking', compact('carStore', 'service'));
+        return view('front.booking', compact('carStore', 'service', 'tomorrow'));
+    }
+
+    public function booking_store(CarStore $carStore, CarService $service)
+    {
+        return 'Booking Store';
     }
 }

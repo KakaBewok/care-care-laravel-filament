@@ -38,7 +38,7 @@
                     <div class="flex items-center gap-1">
                         <h1 class="font-semibold w-fit">{{ $carStore->name }}</h1>
                         <div class="w-[18px] h-[18px] flex shrink-0">
-                            <img src="assets/images/icons/verify.svg" alt="verified">
+                            <img src="{{ asset('assets/images/icons/verify.svg') }}" alt="verified">
                         </div>
                     </div>
                     <div class="flex items-center gap-[2px]">
@@ -55,7 +55,7 @@
                         <img src="{{ asset('assets/images/icons/illustration.svg') }}" alt="icon">
                     </div>
                     <div class="flex flex-col h-fit">
-                        <p class="font-semibold">Gold Wash</p>
+                        <p class="font-semibold">{{ $service->name }}</p>
                         <p class="text-sm leading-[21px] text-[#909DBF]">Top Rated Service</p>
                     </div>
                 </div>
@@ -63,24 +63,25 @@
             </div>
         </div>
         <div class="flex h-full flex-1 mt-5">
-            <form action="payment.html"
+            <form action="{{ route('front.booking.store', [$carStore, $service]) }}" method="POST"
                 class="w-full flex flex-col rounded-t-[30px] p-5 pt-[30px] gap-[26px] bg-white overflow-x-hidden mb-0 mt-auto">
+                @csrf
                 <div class="flex flex-col gap-2">
-                    <h2 class="font-semibold">Choose Time</h2>
+                    <h2 class="font-semibold">Choose Day</h2>
                     <div class="flex items-center gap-2">
                         <label class="!w-fit group relative">
                             <div
                                 class="rounded-full !w-fit border border-[#E9E8ED] p-[12px_20px] font-semibold transition-all duration-300 hover:bg-[#5B86EF] hover:text-white bg-white group-has-[:checked]:bg-[#5B86EF] group-has-[:checked]:text-white group-has-[:disabled]:bg-[#EEEFF4] group-has-[:disabled]:text-[#AAADBF]">
                                 Today</div>
-                            <input type="radio" name="day" id="" class="absolute top-1/2 left-1/2 -z-10"
-                                required disabled>
+                            <input type="radio" name="started_at" id=""
+                                class="absolute top-1/2 left-1/2 -z-10" required disabled>
                         </label>
                         <label class="!w-fit group relative">
                             <div
                                 class="rounded-full !w-fit border border-[#E9E8ED] p-[12px_20px] font-semibold transition-all duration-300 hover:bg-[#5B86EF] hover:text-white bg-white group-has-[:checked]:bg-[#5B86EF] group-has-[:checked]:text-white group-has-[:disabled]:bg-[#EEEFF4] group-has-[:disabled]:text-[#AAADBF]">
                                 Tomorrow</div>
-                            <input type="radio" name="day" id="" class="absolute top-1/2 left-1/2 -z-10"
-                                required>
+                            <input type="radio" name="started_at" id="" value="{{ $tomorrow }}"
+                                class="absolute top-1/2 left-1/2 -z-10" required>
                         </label>
                     </div>
                 </div>
@@ -92,56 +93,56 @@
                                 <div
                                     class="rounded-full !w-fit border border-[#E9E8ED] p-[12px_20px] font-semibold transition-all duration-300 hover:bg-[#5B86EF] hover:text-white bg-white group-has-[:checked]:bg-[#5B86EF] group-has-[:checked]:text-white group-has-[:disabled]:bg-[#EEEFF4] group-has-[:disabled]:text-[#AAADBF]">
                                     09:00</div>
-                                <input type="radio" name="time" id=""
+                                <input type="radio" name="time_at" value="09:00:00" id=""
                                     class="absolute top-1/2 left-1/2 -z-10" required>
                             </label>
                             <label class="swiper-slide !w-fit group relative">
                                 <div
                                     class="rounded-full !w-fit border border-[#E9E8ED] p-[12px_20px] font-semibold transition-all duration-300 hover:bg-[#5B86EF] hover:text-white bg-white group-has-[:checked]:bg-[#5B86EF] group-has-[:checked]:text-white group-has-[:disabled]:bg-[#EEEFF4] group-has-[:disabled]:text-[#AAADBF]">
                                     10:00</div>
-                                <input type="radio" name="time" id=""
+                                <input type="radio" name="time_at" value="10:00:00" id=""
                                     class="absolute top-1/2 left-1/2 -z-10" required>
                             </label>
                             <label class="swiper-slide !w-fit group relative">
                                 <div
                                     class="rounded-full !w-fit border border-[#E9E8ED] p-[12px_20px] font-semibold transition-all duration-300 hover:bg-[#5B86EF] hover:text-white bg-white group-has-[:checked]:bg-[#5B86EF] group-has-[:checked]:text-white group-has-[:disabled]:bg-[#EEEFF4] group-has-[:disabled]:text-[#AAADBF]">
                                     11:00</div>
-                                <input type="radio" name="time" id=""
+                                <input type="radio" name="time_at" value="11:00:00" id=""
                                     class="absolute top-1/2 left-1/2 -z-10" required>
                             </label>
                             <label class="swiper-slide !w-fit group relative">
                                 <div
                                     class="rounded-full !w-fit border border-[#E9E8ED] p-[12px_20px] font-semibold transition-all duration-300 hover:bg-[#5B86EF] hover:text-white bg-white group-has-[:checked]:bg-[#5B86EF] group-has-[:checked]:text-white group-has-[:disabled]:bg-[#EEEFF4] group-has-[:disabled]:text-[#AAADBF]">
                                     12:00</div>
-                                <input type="radio" name="time" id=""
+                                <input type="radio" name="time_at" value="12:00:00" id=""
                                     class="absolute top-1/2 left-1/2 -z-10" required>
                             </label>
                             <label class="swiper-slide !w-fit group relative">
                                 <div
                                     class="rounded-full !w-fit border border-[#E9E8ED] p-[12px_20px] font-semibold transition-all duration-300 hover:bg-[#5B86EF] hover:text-white bg-white group-has-[:checked]:bg-[#5B86EF] group-has-[:checked]:text-white group-has-[:disabled]:bg-[#EEEFF4] group-has-[:disabled]:text-[#AAADBF]">
                                     13:00</div>
-                                <input type="radio" name="time" id=""
+                                <input type="radio" name="time_at" value="13:00:00" id=""
                                     class="absolute top-1/2 left-1/2 -z-10" required>
                             </label>
                             <label class="swiper-slide !w-fit group relative">
                                 <div
                                     class="rounded-full !w-fit border border-[#E9E8ED] p-[12px_20px] font-semibold transition-all duration-300 hover:bg-[#5B86EF] hover:text-white bg-white group-has-[:checked]:bg-[#5B86EF] group-has-[:checked]:text-white group-has-[:disabled]:bg-[#EEEFF4] group-has-[:disabled]:text-[#AAADBF]">
                                     14:00</div>
-                                <input type="radio" name="time" id=""
+                                <input type="radio" name="time_at" value="14:00:00" id=""
                                     class="absolute top-1/2 left-1/2 -z-10" required>
                             </label>
                             <label class="swiper-slide !w-fit group relative">
                                 <div
                                     class="rounded-full !w-fit border border-[#E9E8ED] p-[12px_20px] font-semibold transition-all duration-300 hover:bg-[#5B86EF] hover:text-white bg-white group-has-[:checked]:bg-[#5B86EF] group-has-[:checked]:text-white group-has-[:disabled]:bg-[#EEEFF4] group-has-[:disabled]:text-[#AAADBF]">
                                     15:00</div>
-                                <input type="radio" name="time" id=""
+                                <input type="radio" name="time_at" value="15:00:00" id=""
                                     class="absolute top-1/2 left-1/2 -z-10" required>
                             </label>
                             <label class="swiper-slide !w-fit group relative">
                                 <div
                                     class="rounded-full !w-fit border border-[#E9E8ED] p-[12px_20px] font-semibold transition-all duration-300 hover:bg-[#5B86EF] hover:text-white bg-white group-has-[:checked]:bg-[#5B86EF] group-has-[:checked]:text-white group-has-[:disabled]:bg-[#EEEFF4] group-has-[:disabled]:text-[#AAADBF]">
                                     16:00</div>
-                                <input type="radio" name="time" id=""
+                                <input type="radio" name="time_at" value="16:00:00" id=""
                                     class="absolute top-1/2 left-1/2 -z-10" required>
                             </label>
                         </div>
@@ -152,9 +153,9 @@
                     <div
                         class="rounded-full flex items-center ring-1 ring-[#E9E8ED] p-[12px_16px] bg-white w-full transition-all duration-300 focus-within:ring-2 focus-within:ring-[#FF8E62]">
                         <div class="w-6 h-6 flex shrink-0 mr-[10px]">
-                            <img src="assets/images/icons/profile-circle.svg" alt="icon">
+                            <img src="{{ asset('assets/images/icons/profile-circle.svg') }}" alt="icon">
                         </div>
-                        <input type="text" name="" id="Name"
+                        <input type="text" name="name" id="Name"
                             class="appearance-none outline-none w-full font-semibold placeholder:font-normal placeholder:text-[#909DBF]"
                             placeholder="Write your real name" required>
                     </div>
@@ -164,9 +165,9 @@
                     <div
                         class="rounded-full flex items-center ring-1 ring-[#E9E8ED] p-[12px_16px] bg-white w-full transition-all duration-300 focus-within:ring-2 focus-within:ring-[#FF8E62]">
                         <div class="w-6 h-6 flex shrink-0 mr-[10px]">
-                            <img src="assets/images/icons/call.svg" alt="icon">
+                            <img src="{{ asset('assets/images/icons/call.svg') }}" alt="icon">
                         </div>
-                        <input type="tel" name="" id="Name"
+                        <input type="tel" name="phone_number" id="Name"
                             class="appearance-none outline-none w-full font-semibold placeholder:font-normal placeholder:text-[#909DBF]"
                             placeholder="What is your phone number" required>
                     </div>
@@ -174,8 +175,11 @@
                 <hr class="border-[#E9E8ED]">
                 <div id="CTA" class="w-full flex items-center justify-between bg-white">
                     <div class="flex flex-col gap-[2px]">
-                        <p class="font-bold text-xl leading-[30px]">Rp 12.560.000</p>
-                        <p class="text-sm leading-[21px] text-[#909DBF]">3 Hours</p>
+                        <p class="font-bold text-xl leading-[30px]">Rp
+                            {{ number_format($service->price, 0, ',', '.') }}
+                        </p>
+                        <p class="text-sm leading-[21px] text-[#909DBF]">{{ $service->duration_in_hour }}
+                            {{ $service->duration_in_hour > 1 ? 'Hours' : 'Hour' }}</p>
                     </div>
                     <button type="submit"
                         class="rounded-full p-[12px_20px] bg-[#FF8E62] font-bold text-white">Checkout Now</button>
