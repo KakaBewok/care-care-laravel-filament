@@ -74,8 +74,7 @@ class FrontController extends Controller
 
     public function booking_store(StoreBookingRequest $request)
     {
-        // $validated = $request->validated();
-
+        $validated = $request->validated();
         $csName = $request->input('name');
         $csPhoneNumber = $request->input('phone_number');
         $csTimeAt = $request->input('time_at');
@@ -99,6 +98,7 @@ class FrontController extends Controller
 
         session()->put('totalAmount', $grandTotal);
         // dd(session()->all());
+
         return view('front.payment', compact('carService', 'carStore', 'totalPpn', 'bookingFee', 'grandTotal'));
     }
 
