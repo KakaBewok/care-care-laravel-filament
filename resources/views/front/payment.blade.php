@@ -98,7 +98,7 @@
                     </ul>
                 </div>
             @endif
-            <form action="{{ route('front.booking.payment.store') }}" method="POST" enctype="multipart/form-data"
+            <form action="{{ route('booking-payment.store') }}" method="POST" enctype="multipart/form-data"
                 class="w-full flex flex-col rounded-t-[30px] p-5 pt-[30px] gap-[26px] bg-white overflow-x-hidden mb-0 mt-auto">
                 @csrf
                 <div id="Payment-info" class="flex flex-col gap-4">

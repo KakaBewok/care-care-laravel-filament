@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\BookingPaymentController;
 use App\Http\Controllers\FrontController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,10 +17,9 @@ Route::get('/store/details/{carStore:slug}', [FrontController::class, 'details']
 
 Route::get('/booking/{carStore:slug}', [FrontController::class, 'booking'])->name('front.booking');
 
-Route::post('/booking/{carStore:slug}/{carService:slug}', [FrontController::class, 'booking_store'])->name('front.booking.store');
+Route::post('/booking/{carStore:slug}/{carService:slug}', [BookingController::class, 'store'])->name('booking.store');
 
-Route::get('/booking/{carStore}/{carService}/payment', [FrontController::class, 'booking_payment'])->name('front.booking.payment');
-
-Route::post('/booking/payment/submit', [FrontController::class, 'booking_payment_store'])->name('front.booking.payment.store');
+Route::get('/booking/{carStore}/{carService}/payment', [BookingPaymentController::class, 'show'])->name('booking-payment.show');
+Route::post('/booking/payment', [BookingPaymentController::class, 'store'])->name('booking-payment.store');
 
 Route::get('/booking/success/{bookingTransaction}', [FrontController::class, 'success_booking'])->name('front.success.booking');
