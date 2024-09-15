@@ -80,7 +80,7 @@
                             <div
                                 class="rounded-full !w-fit border border-[#E9E8ED] p-[12px_20px] font-semibold transition-all duration-300 hover:bg-[#5B86EF] hover:text-white bg-white group-has-[:checked]:bg-[#5B86EF] group-has-[:checked]:text-white group-has-[:disabled]:bg-[#EEEFF4] group-has-[:disabled]:text-[#AAADBF]">
                                 Tomorrow</div>
-                            <input type="radio" name="started_at" id="" value="{{ $tomorrow }}"
+                            <input type="radio" name="started_at" id=""
                                 class="absolute top-1/2 left-1/2 -z-10" required>
                         </label>
                     </div>
@@ -167,7 +167,7 @@
                         <div class="w-6 h-6 flex shrink-0 mr-[10px]">
                             <img src="{{ asset('assets/images/icons/call.svg') }}" alt="icon">
                         </div>
-                        <input type="tel" name="phone_number" id="Name"
+                        <input type="tel" name="phone_number" id="PhoneNumber"
                             class="appearance-none outline-none w-full font-semibold placeholder:font-normal placeholder:text-[#909DBF]"
                             placeholder="What is your phone number" required>
                     </div>

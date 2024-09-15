@@ -24,6 +24,20 @@ class BookingTransaction extends Model
         'time_at'
     ];
 
+    protected $casts = [
+        'started_at' => 'date'
+    ];
+
+    public static function generateUniqueTrxId()
+    {
+        $prefix = 'CC';
+        do {
+            $randomString = $prefix . mt_rand(1000, 9999);
+        } while (Self::where('trx_id', $randomString)->exist());
+
+        return $randomString;
+    }
+
     public function service_details(): BelongsTo
     {
         return $this->belongsTo(CarService::class, 'car_service_id');
