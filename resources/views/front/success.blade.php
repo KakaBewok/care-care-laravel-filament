@@ -15,8 +15,8 @@
         class="bg-[#FAFAFA] max-w-[640px] mx-auto min-h-screen relative flex flex-col has-[#CTA-nav]:pb-[120px] has-[#Bottom-nav]:pb-[120px]">
         <div class="flex flex-col items-center gap-[50px] max-w-[330px] m-auto h-fit w-full py-6">
             <div class="w-[120px] h-[120px] flex shrink-0">
-                <img src="{{ asset('assets/images/icons/illustration1.svg') }}" class="w-full h-full object-contain"
-                    alt="icon">
+                <img src="{{ Storage::url($bookingTransaction->service_details->icon) }}"
+                    class="w-full h-full object-contain" alt="icon">
             </div>
             <div class="flex flex-col gap-1 text-center">
                 <h1 class="font-bold text-2xl leading-[36px]">Yeay! Good Job</h1>
@@ -46,7 +46,7 @@
                 <a href="{{ route('front.index') }}"
                     class="w-full rounded-full p-[12px_20px] bg-[#FF8E62] font-bold text-white text-center">Book
                     More</a>
-                <a href="booking-details.html"
+                <a href="{{ route('front.transactions') }}"
                     class="w-full rounded-full border border-[#E9E8ED] p-[12px_20px] bg-white text-center font-bold transition-all duration-300 hover:ring-2 hover:ring-[#FF8E62]">Check
                     My Booking</a>
             </div>

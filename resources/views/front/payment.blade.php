@@ -89,7 +89,7 @@
             </div>
         </div>
         <div class="flex h-full flex-1 mt-5">
-            @if ($errors->any())
+            {{-- @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
                         @foreach ($errors->all() as $error)
@@ -97,7 +97,7 @@
                         @endforeach
                     </ul>
                 </div>
-            @endif
+            @endif --}}
             <form action="{{ route('booking-payment.store') }}" method="POST" enctype="multipart/form-data"
                 class="w-full flex flex-col rounded-t-[30px] p-5 pt-[30px] gap-[26px] bg-white overflow-x-hidden mb-0 mt-auto">
                 @csrf
