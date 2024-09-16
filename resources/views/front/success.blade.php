@@ -15,7 +15,8 @@
         class="bg-[#FAFAFA] max-w-[640px] mx-auto min-h-screen relative flex flex-col has-[#CTA-nav]:pb-[120px] has-[#Bottom-nav]:pb-[120px]">
         <div class="flex flex-col items-center gap-[50px] max-w-[330px] m-auto h-fit w-full py-6">
             <div class="w-[120px] h-[120px] flex shrink-0">
-                <img src="assets/images/icons/illustration1.svg" class="w-full h-full object-contain" alt="icon">
+                <img src="{{ asset('assets/images/icons/illustration1.svg') }}" class="w-full h-full object-contain"
+                    alt="icon">
             </div>
             <div class="flex flex-col gap-1 text-center">
                 <h1 class="font-bold text-2xl leading-[36px]">Yeay! Good Job</h1>
@@ -26,13 +27,13 @@
                 <p class="font-semibold">Your Booking ID</p>
                 <div class="flex items-center gap-[10px]">
                     <div class="w-[60px] h-[60px] flex shrink-0">
-                        <img src="assets/images/icons/illustration6.svg" alt="icon">
+                        <img src="{{ asset('assets/images/icons/illustration6.svg') }}" alt="icon">
                     </div>
                     <div class="flex flex-col">
                         <div class="flex items-center gap-1">
-                            <p class="font-semibold w-fit">CC198293</p>
+                            <p class="font-semibold w-fit">{{ $bookingTransaction->trx_id }}</p>
                             <div class="w-[18px] h-[18px] flex shrink-0">
-                                <img src="assets/images/icons/verify.svg" alt="verified">
+                                <img src="{{ asset('assets/images/icons/verify.svg') }}" alt="verified">
                             </div>
                         </div>
                         <div class="flex items-center gap-[2px]">
@@ -42,7 +43,7 @@
                 </div>
             </div>
             <div class="flex flex-col w-full gap-[14px]">
-                <a href="index.html"
+                <a href="{{ route('front.index') }}"
                     class="w-full rounded-full p-[12px_20px] bg-[#FF8E62] font-bold text-white text-center">Book
                     More</a>
                 <a href="booking-details.html"

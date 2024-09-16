@@ -51,8 +51,8 @@ class BookingPaymentController extends Controller
 
             $bookingTransactionId = $newBooking->id;
         });
-
-        return redirect()->route('front.success.booking', $bookingTransactionId);
+        $bookingTransaction = BookingTransaction::find($bookingTransactionId)->first();
+        return redirect()->route('front.success.booking', $bookingTransaction);
     }
 
     /**

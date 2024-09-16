@@ -65,8 +65,8 @@ class FrontController extends Controller
         return view('front.booking', compact('carStore', 'service'));
     }
 
-    public function success_booking(BookingTransaction $booking)
+    public function success_booking(BookingTransaction $bookingTransaction)
     {
-        return view('front.success', compact('booking'));
+        return view('front.success', compact('bookingTransaction'));
     }
 }

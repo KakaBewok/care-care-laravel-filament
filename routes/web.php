@@ -20,6 +20,7 @@ Route::get('/booking/{carStore:slug}', [FrontController::class, 'booking'])->nam
 Route::post('/booking/{carStore:slug}/{carService:slug}', [BookingController::class, 'store'])->name('booking.store');
 
 Route::get('/booking/{carStore}/{carService}/payment', [BookingPaymentController::class, 'show'])->name('booking-payment.show');
+
 Route::post('/booking/payment', [BookingPaymentController::class, 'store'])->name('booking-payment.store');
 
 Route::get('/booking/success/{bookingTransaction}', [FrontController::class, 'success_booking'])->name('front.success.booking');
