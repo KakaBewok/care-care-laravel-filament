@@ -1,22 +1,11 @@
-<!doctype html>
-<html>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="{{ asset('output.css') }}" rel="stylesheet">
-    <link href="{{ asset('main.css') }}" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet" />
-</head>
-
-<body>
+@extends('front.layouts.app')
+@section('content')
     <main
         class="bg-[#FAFAFA] max-w-[640px] mx-auto min-h-screen relative flex flex-col has-[#CTA-nav]:pb-[120px] has-[#Bottom-nav]:pb-[120px]">
         <div class="flex flex-col items-center gap-[50px] max-w-[330px] m-auto h-fit w-full py-6">
             <div class="w-[120px] h-[120px] flex shrink-0">
-                <img src="{{ Storage::url($bookingTransaction->service_details->icon) }}"
-                    class="w-full h-full object-contain" alt="icon">
+                <img src="{{ Storage::url($bookingTransaction->service_details->icon) }}" class="w-full h-full object-contain"
+                    alt="icon">
             </div>
             <div class="flex flex-col gap-1 text-center">
                 <h1 class="font-bold text-2xl leading-[36px]">Yeay! Good Job</h1>
@@ -52,6 +41,4 @@
             </div>
         </div>
     </main>
-</body>
-
-</html>
+@endsection

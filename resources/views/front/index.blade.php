@@ -1,16 +1,5 @@
-<!doctype html>
-<html>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="{{ asset('output.css') }}" rel="stylesheet">
-    <link href="{{ asset('main.css') }}" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet" />
-</head>
-
-<body>
+@extends('front.layouts.app')
+@section('content')
     <main
         class="bg-[#FAFAFA] max-w-[640px] mx-auto min-h-screen relative flex flex-col has-[#CTA-nav]:pb-[120px] has-[#Bottom-nav]:pb-[120px]">
         <div class="bg-[#270738] absolute top-0 max-w-[640px] w-full mx-auto rounded-b-[50px] h-[370px]"></div>
@@ -107,6 +96,9 @@
             </ul>
         </nav>
     </main>
+@endsection
+
+@push('before-scripts')
     <script>
         document.querySelectorAll('.service-link').forEach(link => {
             link.addEventListener('click', function(e) {
@@ -119,6 +111,4 @@
             })
         });
     </script>
-</body>
-
-</html>
+@endpush

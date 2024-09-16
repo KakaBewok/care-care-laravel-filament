@@ -1,17 +1,5 @@
-<!doctype html>
-<html>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="{{ asset('output.css') }}" rel="stylesheet">
-    <link href="{{ asset('main.css') }}" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-</head>
-
-<body>
+@extends('front.layouts.app')
+@section('content')
     <main
         class="bg-[#FAFAFA] max-w-[640px] mx-auto min-h-screen relative flex flex-col has-[#CTA-nav]:pb-[120px] has-[#Bottom-nav]:pb-[120px]">
         <div id="Top-nav" class="flex items-center justify-between px-4 pt-5">
@@ -31,8 +19,7 @@
             <h2 class="font-semibold">Workshop At</h2>
             <div class="flex items-center w-full rounded-2xl border border-[#E9E8ED] p-4 gap-[10px] bg-white">
                 <div class="w-[80px] h-[60px] flex shrink-0 rounded-xl overflow-hidden">
-                    <img src="{{ Storage::url($carStore->thumbnail) }}" class="w-full h-full object-cover"
-                        alt="thumbnail">
+                    <img src="{{ Storage::url($carStore->thumbnail) }}" class="w-full h-full object-cover" alt="thumbnail">
                 </div>
                 <div class="flex flex-col">
                     <div class="flex items-center gap-1">
@@ -73,15 +60,15 @@
                             <div
                                 class="rounded-full !w-fit border border-[#E9E8ED] p-[12px_20px] font-semibold transition-all duration-300 hover:bg-[#5B86EF] hover:text-white bg-white group-has-[:checked]:bg-[#5B86EF] group-has-[:checked]:text-white group-has-[:disabled]:bg-[#EEEFF4] group-has-[:disabled]:text-[#AAADBF]">
                                 Today</div>
-                            <input type="radio" name="started_at" id=""
-                                class="absolute top-1/2 left-1/2 -z-10" required disabled>
+                            <input type="radio" name="started_at" id="" class="absolute top-1/2 left-1/2 -z-10"
+                                required disabled>
                         </label>
                         <label class="!w-fit group relative">
                             <div
                                 class="rounded-full !w-fit border border-[#E9E8ED] p-[12px_20px] font-semibold transition-all duration-300 hover:bg-[#5B86EF] hover:text-white bg-white group-has-[:checked]:bg-[#5B86EF] group-has-[:checked]:text-white group-has-[:disabled]:bg-[#EEEFF4] group-has-[:disabled]:text-[#AAADBF]">
                                 Tomorrow</div>
-                            <input type="radio" name="started_at" id=""
-                                class="absolute top-1/2 left-1/2 -z-10" required>
+                            <input type="radio" name="started_at" id="" class="absolute top-1/2 left-1/2 -z-10"
+                                required>
                         </label>
                     </div>
                 </div>
@@ -181,15 +168,19 @@
                         <p class="text-sm leading-[21px] text-[#909DBF]">{{ $service->duration_in_hour }}
                             {{ $service->duration_in_hour > 1 ? 'Hours' : 'Hour' }}</p>
                     </div>
-                    <button type="submit"
-                        class="rounded-full p-[12px_20px] bg-[#FF8E62] font-bold text-white">Checkout Now</button>
+                    <button type="submit" class="rounded-full p-[12px_20px] bg-[#FF8E62] font-bold text-white">Checkout
+                        Now</button>
                 </div>
             </form>
         </div>
     </main>
+@endsection
 
+@push('after-styles')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+@endpush
+
+@push('before-scripts')
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="{{ asset('customjs/booking.js') }}"></script>
-</body>
-
-</html>
+@endpush

@@ -1,16 +1,5 @@
-<!doctype html>
-<html>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="{{ asset('output.css') }}" rel="stylesheet">
-    <link href="{{ asset('main.css') }}" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet" />
-</head>
-
-<body>
+@extends('front.layouts.app')
+@section('content')
     <main
         class="bg-[#FAFAFA] max-w-[640px] mx-auto min-h-screen relative flex flex-col has-[#CTA-nav]:pb-[120px] has-[#Bottom-nav]:pb-[120px]">
         <div id="Top-nav" class="flex items-center justify-between px-4 pt-5">
@@ -122,8 +111,8 @@
                     </div>
                     <div class="flex items-center w-full gap-[10px] bg-white">
                         <div class="w-[71px] h-[50px] flex shrink-0 rounded-xl overflow-hidden">
-                            <img src="{{ asset('assets//images/logos/mandiri.svg') }}"
-                                class="w-full h-full object-contain" alt="thumbnail">
+                            <img src="{{ asset('assets//images/logos/mandiri.svg') }}" class="w-full h-full object-contain"
+                                alt="thumbnail">
                         </div>
                         <div class="flex flex-col">
                             <div class="flex items-center gap-1">
@@ -154,14 +143,13 @@
                     </div>
                 </div>
                 <hr class="border-[#E9E8ED]">
-                <button type="submit"
-                    class="w-full rounded-full p-[12px_20px] bg-[#FF8E62] font-bold text-white">Confirm
+                <button type="submit" class="w-full rounded-full p-[12px_20px] bg-[#FF8E62] font-bold text-white">Confirm
                     Payment</button>
             </form>
         </div>
     </main>
+@endsection
 
+@push('before-scripts')
     <script src="{{ asset('customjs/payment.js') }}"></script>
-</body>
-
-</html>
+@endpush
